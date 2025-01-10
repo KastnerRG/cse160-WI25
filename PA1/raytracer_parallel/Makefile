@@ -16,10 +16,10 @@ raytracer_parallel: main.c lib/vec_ops.c
 	$(CC) $(CFLAGS) -o raytracer_parallel main.c $(INCFLAGS) $(LDFLAGS) $(MATHFLAG)
 
 gpu: raytracer_parallel
-	./raytracer_parallel gpu
+	./raytracer_parallel 1
 
 cpu: raytracer_parallel
-	./raytracer_parallel cpu
+	./raytracer_parallel 0
 
 clean:
 	rm -f raytracer_parallel
