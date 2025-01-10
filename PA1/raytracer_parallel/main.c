@@ -170,7 +170,7 @@ int main(int argc, char *argv[]) {
 
     // Save the result to a PNG file
     char* out_img_name;
-    if (device_choice == 0) {
+    if (device_choice == 1) {
         out_img_name = "output_gpu.png";
     } else {
         out_img_name = "output_cpu.png";
