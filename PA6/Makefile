@@ -90,6 +90,8 @@ cpu:		m1
 gpu: 		m2
 		./m2 1000
 
+time: time_gpu
+
 time_gpu: 		m2
 		python3 ../utils/profile.py  --args ./m2 1000
 
