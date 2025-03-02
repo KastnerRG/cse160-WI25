@@ -1,0 +1,16 @@
+{
+	"image": "ghcr.io/kastnerrg/cse160-opencl:cuda",
+	"runArgs": [
+		"--gpus=all",
+		"--runtime=nvidia",
+		"-e", "NVIDIA_DRIVER_CAPABILITIES=all"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"VisualStudioExptTeam.vscodeintellicode",
+				"ms-vscode.cpptools-extension-pack"
+			]
+		}
+	}
+}

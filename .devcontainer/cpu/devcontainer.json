@@ -1,0 +1,11 @@
+{
+	"image": "ghcr.io/kastnerrg/cse160-opencl:cpu",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"VisualStudioExptTeam.vscodeintellicode",
+				"ms-vscode.cpptools-extension-pack"
+			]
+		}
+	}
+}
