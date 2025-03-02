@@ -12,8 +12,6 @@ __pycache__/
 
 vector_store/
 
-# Ignore VSCode settings
-.vscode/
 
 # Ignore MacOS system files
 *.DS_Store
