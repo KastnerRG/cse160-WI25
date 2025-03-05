@@ -12,13 +12,13 @@ else # Android
 	LDFLAGS += -lOpenCL
 endif
 
-all: m2 #m1
+all: m2 m1
 
 m2:		../helper_lib/helper_lib.a m2.o ece408net.o src/network.o src/mnist.o layer.sentinel loss.sentinel custom.sentinel
 		$(CC) $(CFLAGS) src/layer/custom/new-forward.cc m2.o ece408net.o src/network.o src/mnist.o src/layer/*.o src/loss/*.o src/layer/custom/*.o $(INCFLAGS) $(LDFLAGS) -o m2
 
-# m1:		../helper_lib/helper_lib.a m1.o ece408net.o src/network.o src/mnist.o layer.sentinel loss.sentinel custom.sentinel
-# 		$(CC) $(CFLAGS) m1.o ece408net.o src/network.o src/mnist.o src/layer/*.o src/loss/*.o src/layer/custom/*.o $(INCFLAGS) $(LDFLAGS) -o m1
+m1:		../helper_lib/helper_lib.a m1.o ece408net.o src/network.o src/mnist.o layer.sentinel loss.sentinel custom.sentinel
+		$(CC) $(CFLAGS) src/layer/custom/new-forward.cc m1.o ece408net.o src/network.o src/mnist.o src/layer/*.o src/loss/*.o src/layer/custom/*.o $(INCFLAGS) $(LDFLAGS) -o m1
 
 # debug:	debug_m2
 
