@@ -36,7 +36,6 @@ void Conv_Custom::forward(const Matrix &bottom)
   cl_mem x_unroll_d;
   cl_mem y_d;
   cl_mem k_d;
-  cl_mem k_unroll_d;
 
   std::cout << "Conv-OpenCL==" << std::endl;
 
@@ -45,17 +44,17 @@ void Conv_Custom::forward(const Matrix &bottom)
   // Start layer timer
   auto start_time_layer = std::chrono::high_resolution_clock::now();
   // Data transfer CPU to GPU
-  openclInterface.conv_forward_gemm_opencl_prolog(y, x, k, &y_d, &x_d, &k_d, &x_unroll_d, &k_unroll_d, B, M, C, height_in, width_in, K);
+  openclInterface.conv_forward_gemm_opencl_prolog(y, x, k, &y_d, &x_d, &k_d, &x_unroll_d, B, M, C, height_in, width_in, K);
 
   // Start kernel timer
   auto start_time_kernel = std::chrono::high_resolution_clock::now();
   // Hand off to GPU for computation
-  openclInterface.conv_forward_gemm_opencl(y_d, x_d, k_d, x_unroll_d, k_unroll_d, B, M, C, height_in, width_in, K);
+  openclInterface.conv_forward_gemm_opencl(y_d, x_d, k_d, x_unroll_d, B, M, C, height_in, width_in, K);
   // Stop kernel timer
   auto end_time_kernel = std::chrono::high_resolution_clock::now();
 
   // Data transfer GPU to CPU
-  openclInterface.conv_forward_gemm_opencl_epilog(y, y_d, x_d, k_d, x_unroll_d, k_unroll_d, B, M, C, height_in, width_in, K);
+  openclInterface.conv_forward_gemm_opencl_epilog(y, y_d, x_d, k_d, x_unroll_d, B, M, C, height_in, width_in, K);
 
   // Stop layer timer
   auto end_time_layer = std::chrono::high_resolution_clock::now();
