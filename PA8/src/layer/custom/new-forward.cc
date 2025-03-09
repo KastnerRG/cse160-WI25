@@ -16,7 +16,7 @@
         exit(EXIT_FAILURE);                            \
     }
 
-void OpenCLInterface::conv_forward_gemm_opencl_prolog(const float *host_y, const float *host_x, const float *host_k, cl_mem *device_y, cl_mem *device_x, cl_mem *device_k, cl_mem *device_k_unroll, const int B, const int M, const int C, const int H, const int W, const int K)
+void OpenCLInterface::conv_forward_gemm_opencl_prolog(const float *host_y, const float *host_x, const float *host_k, cl_mem *device_y, cl_mem *device_x, cl_mem *device_k, cl_mem *device_x_unroll, const int B, const int M, const int C, const int H, const int W, const int K)
 {
     //@@ Allocate GPU memory here (don't forget batch sizes!)
 
