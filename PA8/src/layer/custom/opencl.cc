@@ -9,10 +9,22 @@
 #define CHECK_ERR(err, msg)                           \
     if (err != CL_SUCCESS)                            \
     {                                                 \
+        if (err == CL_BUILD_PROGRAM_FAILURE)          \
+        {                                             \
+            size_t log_size;                          \
+            clGetProgramBuildInfo(program, device_id, \
+                                  CL_PROGRAM_BUILD_LOG, 0, nullptr, &log_size); \
+            char *log = (char *)malloc(log_size);     \
+            clGetProgramBuildInfo(program, device_id, \
+                                  CL_PROGRAM_BUILD_LOG, log_size, log, nullptr); \
+            fprintf(stderr, "%s failed: %d\n", msg, err); \
+            fprintf(stderr, "Build log:\n%s\n", log); \
+            free(log);                               \
+        }                                             \
+        else                                          \
         fprintf(stderr, "%s failed: %d\n", msg, err); \
         exit(EXIT_FAILURE);                           \
     }
-
 void OpenCL::setup(cl_device_type device_type)
 {
     // Load external OpenCL kernel code
