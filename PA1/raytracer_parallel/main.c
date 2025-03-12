@@ -29,6 +29,7 @@ int main(int argc, char *argv[]) {
 
     // OpenCL Initialization
     cl_platform_id platform[10];
+    cl_device_id all_devices[2];
     cl_device_id device;
     cl_context context;
     cl_command_queue queue;
@@ -47,7 +48,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     err = clGetPlatformIDs(2, platform, &num_platforms);
-    err |= clGetDeviceIDs(platform[device_choice], CL_DEVICE_TYPE_ALL, 1, &device, &num_devices);
+    err |= clGetDeviceIDs(platform[0], CL_DEVICE_TYPE_ALL, 2, all_devices, &num_devices);
+    device = all_devices[device_choice];
 
     printf("\n========================================================\n");
     char device_name[256];
@@ -168,7 +170,7 @@ int main(int argc, char *argv[]) {
 
     // Save the result to a PNG file
     char* out_img_name;
-    if (device_choice == 0) {
+    if (device_choice == 1) {
         out_img_name = "output_gpu.png";
     } else {
         out_img_name = "output_cpu.png";
